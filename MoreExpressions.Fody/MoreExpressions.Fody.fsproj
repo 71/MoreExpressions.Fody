@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Helpers.fs" />
+    <Compile Include="ModuleWeaver.fs" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition=" '$(DebuggingWeaver)' != 'True' ">
+    <!-- Play nice with Fody -->
+    <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(ProjectDir)\..\Weavers\bin\Weavers.dll" />
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="FodyHelpers" Version="3.0.3" />
+  </ItemGroup>
+
+</Project>

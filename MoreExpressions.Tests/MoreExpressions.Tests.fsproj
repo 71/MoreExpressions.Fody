@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Tests.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fody" Version="3.0.3" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
+    <PackageReference Include="Nunit" Version="3.10.1" />
+    <PackageReference Include="Nunit3TestAdapter" Version="3.10.0" />
+    <PackageReference Include="Unquote" Version="4.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MoreExpressions\MoreExpressions.fsproj" />
+    <ProjectReference Include="..\MoreExpressions.Fody\MoreExpressions.Fody.fsproj" />
+  </ItemGroup>
+
+</Project>

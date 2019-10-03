@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+
+    <Version>0.1.0</Version>
+    <FileVersion>$(Version).0</FileVersion>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+
+    <GenerateDocumentationFile Condition=" '$(Configuration)' == 'Release' ">True</GenerateDocumentationFile>
+    <GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' ">True</GeneratePackageOnBuild>
+
+    <!-- NuGet properties -->
+    <Description>Fody weaver that adds new expressions to .NET through function calls.</Description>
+    <Copyright>Copyright 2019 (c) Grégoire Geis</Copyright>
+    <Authors>Grégoire Geis</Authors>
+
+    <Title>MoreExpressions</Title>
+    <PackageId>MoreExpressions.Fody</PackageId>
+    <PackageVersion>$(Version)</PackageVersion>
+    <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>- Initial release, with the 'return' expression.</PackageReleaseNotes>
+    <PackageTags>fody weaver fsharp</PackageTags>
+
+    <PackageProjectUrl>https://github.com/71/MoreExpressions.Fody</PackageProjectUrl>
+    <PackageLicenseUrl>$(PackageProjectUrl)/blob/master/LICENSE.md</PackageLicenseUrl>
+
+    <RepositoryUrl>$(PackageProjectUrl).git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Library.fs" />
+  </ItemGroup>
+
+</Project>
