@@ -62,6 +62,33 @@ let ``should return Some 6``() =
     ``return Some (2 + 4)``() =! Some 6
 
 
+let ``error if not even numbers``(i : int) =
+    if i % 2 = 0 then
+        Ok i
+    else
+        Error "Expected even number"
+
+let ``return Error instead of value``() =
+    let a = Result.try' (``error if not even numbers`` 1)
+    let b = Result.try' (``error if not even numbers`` 2)
+
+    Ok (a + b)
+
+let ``return Ok (2 + 4)``() =
+    let a = Result.try' (``error if not even numbers`` 2)
+    let b = Result.try' (``error if not even numbers`` 4)
+
+    Ok (a + b)
+
+[<Test>]
+let ``should return Error``() =
+    ``return Error instead of value``() =! Error "Expected even number"
+
+[<Test>]
+let ``should return Ok 6``() =
+    ``return Ok (2 + 4)``() =! Ok 6
+
+
 let ``sum from 1 to n``(upto: int) =
     let label, jump = mklabel
     let mutable sum = 0
