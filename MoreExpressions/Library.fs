@@ -9,6 +9,10 @@ module MoreExpressions =
         ignore <| value
         raise <| NotImplementedException()
 
+    [<CompiledName("MakeLabel")>]
+    let mklabel<'t> : ('t -> 't) * ('t -> unit) =
+        raise <| NotImplementedException()
+
 module Option =
     [<CompiledName("Try")>]
     let inline try' option =

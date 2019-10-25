@@ -83,3 +83,43 @@ let y =
 
 Obviously, `x` will be `None` (because `1` is not even) and `y`
 will be `Some 6` (because both `2` and `4` are even).
+
+
+## `label`, `jump` expressions
+
+The `mklabel` function returns a pair of functions that can be used
+to implement jumps in your F# code.
+
+```fsharp
+let label, jump = mklabel
+
+for i = 0 to n - 1 do
+    let isOver = complicatedComputation i n
+
+    if isOver then
+        jump true
+
+let endedEarly = label false
+```
+
+The first function, `label`, takes a default value and either returns this value
+if the `label` expression is reached naturally, or the expression passed to `jump`
+otherwise.
+
+In the example above, if `complicatedComputation i n` returns `true`, then
+`jump true` will be called which will immediately jump to the `endedEarly` assignment;
+here, `label false` will return `true`.
+
+If instead `complicatedComputation i n` never returned `true`, then `label false` would
+return its default value; that is, `false`.
+
+Do watch out, though: anything that happens between `jump` and `label` will not be invoked
+in case of a jump, which is extremely unsafe (it will break your stack and break all
+variables that should have been in the meantime). Therefore this structure should
+only be used in very specific circumstances.
+
+
+## Gotchas
+
+Since IL code is modified, so things that rely on local variables like F# quotations
+may not work in functions that use one of the above expressions.

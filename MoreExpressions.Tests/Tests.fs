@@ -60,3 +60,29 @@ let ``should return None``() =
 [<Test>]
 let ``should return Some 6``() =
     ``return Some (2 + 4)``() =! Some 6
+
+
+let ``sum from 1 to n``(upto: int) =
+    let label, jump = mklabel
+    let mutable sum = 0
+
+    for i = 1 to upto do
+        jump 42
+
+        sum <- sum + i
+
+    label 0, sum
+
+[<Test>]
+let ``should return 42, 0``() =
+    let label, sum = ``sum from 1 to n`` 10
+
+    label =! 42
+    sum =! 0
+
+[<Test>]
+let ``should return 0, 0``() =
+    let label, sum = ``sum from 1 to n`` 0
+
+    label =! 0
+    sum =! 0
